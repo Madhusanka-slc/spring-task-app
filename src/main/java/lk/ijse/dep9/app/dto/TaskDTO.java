@@ -21,7 +21,7 @@ public class TaskDTO implements Serializable {
     private Integer projectId;
 
     @Null(message = "Task status is ready-only")
-    private boolean isCompleted;
+    private Boolean isCompleted;
 
     public TaskDTO(Integer id, Integer projectId) {
         this.id = id;

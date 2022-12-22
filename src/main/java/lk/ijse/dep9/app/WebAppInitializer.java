@@ -1,7 +1,7 @@
 package lk.ijse.dep9.app;
 
-import lk.ijse.dep9.app.api.filter.SecurityFilter;
-import org.springframework.web.filter.DelegatingFilterProxy;
+
+
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 import javax.servlet.Filter;
@@ -28,18 +28,6 @@ public class WebAppInitializer extends AbstractAnnotationConfigDispatcherServlet
         return new String[]{"/"};
     }
 
-//    @Override
-//    protected Filter[] getServletFilters() {
-//        DelegatingFilterProxy filterProxy = new DelegatingFilterProxy();
-//        filterProxy.setTargetBeanName("securityFilter");
-//        return new Filter[]{filterProxy};
-//    }
-
-    @Override
-    protected Filter[] getServletFilters() {
-        DelegatingFilterProxy filterProxy = new DelegatingFilterProxy("securityFilter");
-        return new Filter[]{filterProxy};
-    }
 
 
 }
