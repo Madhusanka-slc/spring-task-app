@@ -59,8 +59,9 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/me")
-    public void deleteUserAccount(){
+    public void deleteUserAccount(@RequestAttribute String username){
         System.out.println("deleteUserAccount()");
+        userService.deleteUserAccount(username);
 
     }
 }
