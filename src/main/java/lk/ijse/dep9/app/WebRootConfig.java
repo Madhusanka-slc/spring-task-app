@@ -2,13 +2,17 @@ package lk.ijse.dep9.app;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Scope;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DataSourceUtils;
 import org.springframework.jndi.JndiObjectFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.context.annotation.RequestScope;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -17,6 +21,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @Configuration
+@ComponentScan
 @EnableTransactionManagement
 public class WebRootConfig {
     @Bean
@@ -28,10 +33,12 @@ public class WebRootConfig {
 
     }
     @Bean
-    public DataSourceTransactionManager transactionManager(DataSource ds){
+    public PlatformTransactionManager transactionManager(DataSource ds){
         return new DataSourceTransactionManager(ds);
 
     }
+
+
 
 //    @Bean(destroyMethod = "close")
     @Bean
@@ -41,6 +48,11 @@ public class WebRootConfig {
 
         return  DataSourceUtils.getConnection(ds);
 
+    }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate(DataSource ds){
+        return new JdbcTemplate(ds);
     }
 
     @Bean

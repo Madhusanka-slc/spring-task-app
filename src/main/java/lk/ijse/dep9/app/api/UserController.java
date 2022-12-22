@@ -46,9 +46,10 @@ public class UserController {
     }
 
     @GetMapping(value = "/me",produces = "application/json")
-    public UserDTO getUserAccountDetails(){
-        System.out.println("getUserAccountDetails()");
-        return new UserDTO();
+    public UserDTO getUserAccountDetails(@RequestAttribute String username){
+        return userService.getUserAccountDetails(username);
+//        System.out.println("getUserAccountDetails()");
+//        return new UserDTO();
 
     }
 
